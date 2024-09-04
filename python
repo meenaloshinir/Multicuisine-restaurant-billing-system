@@ -1,0 +1,103 @@
+print('Welcome to Appetite Multi-cuisine Restaurant!!!')
+print('Here is the list of Enticing Entrees!!!')
+
+# Defining the menus
+chinese = {
+    'noodles spring roll': 100,
+    'chinese samosa': 70,
+    'Babycorn manchurian': 150,
+    'Honey chilli potato': 120,
+    'Panner chilli': 200,
+    'Potato chilli': 125,
+    'Veg manchurian': 160,
+    'Chinese Fried Rice': 150,
+    'Schezwan noodles': 160,
+    'Hakka Noodles': 160,
+    'Chilli Garlic Noodles': 180,
+    'Schezwan Fried Rice': 180,
+    'Gopi Manchurian': 160,
+    'American Noodles chopsuey': 200,
+    'Chinese Bhel': 100
+}
+
+northindian = {
+    'panner butter masala': 180,
+    'butter chicken': 300,
+    'dal makhani': 200,
+    'chole bhature': 120,
+    'aloo paratha': 100,
+    'tandoori chicken': 280,
+    'rajma chawal': 150,
+    'palak panner': 200,
+    'veg biriyani': 180,
+    'rogan josh': 300,
+    'bhindi masala': 150,
+    'kadhai panner': 220,
+    'mutter panner': 200,
+    'shahi panner': 200,
+    'aloo gobi': 150
+}
+
+southindian = {
+    'masala dosa': 100,
+    'idli sambar': 75,
+    'medu vada': 50,
+    'uthappam': 70,
+    'pongal': 60,
+    'upma': 50,
+    'appam with stew': 140,
+    'rasam': 70,
+    'bisi bele bath': 70,
+    'pesarettu': 80,
+    'chicken chettinad': 250,
+    'hyderabadi biriyani': 280,
+    'kerala parotta with curry': 180,
+    'fish curry': 250,
+    'payasam': 70
+}
+
+# Combine all cuisines into a list for easy iteration
+cuisine = [chinese, northindian, southindian]
+
+# Display the menu
+for i, d in enumerate(cuisine, 1):
+    print(f"cuisine{i}:")
+    for key, value in d.items():
+        print(f"{key}: Rs.{value}")
+    print()
+
+order_total = 0
+
+# Function to find and add item to order
+def add_item_to_order(item):
+    global order_total
+    item_found = False
+    for menu in cuisine:
+        if item in menu:
+            order_total += menu[item]
+            print(f"Ordered item '{item}' has been added to your order")
+            item_found = True
+            break
+    if not item_found:
+        print(f"Order item '{item}' is not found")
+
+# Initial item order
+item_1 = input('Enter the item: ')
+add_item_to_order(item_1)
+
+# Loop to add more items
+while True:
+    another_item = input('Do you want to order another item? (yes/no): ').strip().lower()
+    if another_item == 'yes':
+        next_item = input('Enter the next item: ')
+        add_item_to_order(next_item)
+    elif another_item == 'no':
+        break
+    else:
+        print("Please enter 'yes' or 'no'.")
+
+if order_total > 0:
+    print(f"The total bill for your order is Rs.{order_total}")
+else:
+    print("No items ordered.")
+print("Thank you!!! Visit again!!!")
